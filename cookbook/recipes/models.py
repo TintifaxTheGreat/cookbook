@@ -86,12 +86,14 @@ class RecipePage(Page):
         index.SearchField('comments'),
     ]
 
-    content_panels = Page.content_panels + [
+    content_panels = [
+        FieldPanel('title', heading='Rezeptname'),
         FieldPanel('portions'),
         FieldPanel('sections'),
-        FieldPanel('comments'),
+        FieldPanel('comments', ),
     ]
 
+RecipePage._meta.get_field("title").help_text = None
 
 class RecipeIndexPage(Page):
     intro = RichTextField(blank=True)
