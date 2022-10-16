@@ -7,9 +7,29 @@
 {% block content %}
     <h1>{{ page.title }}</h1>
 
-    {{ page.instructions|richtext }}
+    {% for section in page.sections %}
+        <h3>
+            {% if section.value.heading %}
+                {{ section.value.heading }}
+            {% else %}
+                Rezept
+            {% endif %}
+        </h3>
+
+        {% for ingredient in section.value.ingredients %}
+            <p>
+                {{ ingredient.amount }}
+                {{ ingredient.unit }}
+                {{ ingredient.name }}
+            </p>
+        {% endfor %}
+
+        {{ section.value.instructions }}
+
+    {% endfor %}
+    <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
     {{ page.comments|richtext }}
 
-    <p><a href="{{ page.get_parent.url }}">Return to overview</a></p>
+    <p><a href="{{ page.get_parent.url }}">zur Übersichtsseite</a></p>
 
 {% endblock %}

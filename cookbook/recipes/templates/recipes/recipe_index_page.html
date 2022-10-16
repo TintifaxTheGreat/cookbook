@@ -11,8 +11,6 @@
 
     {% for recipe in page.get_children %}
         <h2><a href="{% pageurl recipe %}">{{ recipe.title }}</a></h2>
-        {{ recipe.specific.instructions|richtext }}
-        {{ recipe.specific.comments|richtext }}
     {% endfor %}
 
 {% endblock %}
