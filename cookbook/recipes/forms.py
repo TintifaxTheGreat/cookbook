@@ -1,7 +1,7 @@
 from django import forms
 
 class PortionsForm(forms.Form):
-    your_portions = forms.IntegerField(label='Anzahl Portionen', max_value=999)
+    your_portions = forms.IntegerField(label='', max_value=999)
 
     def __init__(self, *args, **kwargs):
         self.portions = kwargs.pop('default_portions')
