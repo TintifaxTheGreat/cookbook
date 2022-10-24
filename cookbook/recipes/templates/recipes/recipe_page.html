@@ -17,7 +17,10 @@
                 <label>Anzahl Portionen:</label>
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" name="btn" value="OK" class="pure-button pure-button-primary">
+                <input type="submit" name="default" value="0" class="pure-button pure-button-primary"
+                       style="display: none;">
+                <input type="submit" name="btn_down" value="<" class="pure-button pure-button-primary">
+                <input type="submit" name="btn_up" value=">" class="pure-button pure-button-primary">
             </fieldset>
         </form>
 
