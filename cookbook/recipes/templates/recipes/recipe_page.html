@@ -16,7 +16,7 @@
             <fieldset>
                 <label>Anzahl Portionen:</label>
                 {% csrf_token %}
-                {{form.as_p}}
+                {{ form.as_p }}
                 <input type="submit" name="btn" value="OK" class="pure-button pure-button-primary">
             </fieldset>
         </form>
@@ -60,6 +60,7 @@
         <h3>Kommentare</h3>
         {{ page.comments|richtext }}
         <p>&nbsp;</p>
+        -- {{ page.author }}
 
         <p><a class="button-cta pure-button" href="{{ page.get_parent.url }}">Zur Rezeptübersicht</a></p>
 
