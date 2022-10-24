@@ -16,7 +16,7 @@
             <fieldset>
                 <label>Anzahl Portionen:</label>
                 {% csrf_token %}
-                {{ form }}
+                {{form.as_p}}
                 <input type="submit" name="btn" value="OK" class="pure-button pure-button-primary">
             </fieldset>
         </form>
@@ -43,7 +43,7 @@
                 {% for ingredient in section.value.ingredients %}
 
                     <tr class="{% cycle 'pure-table-odd' '' %}">
-                        <td align="right">
+                        <td>
                             &nbsp;{{ ingredient.amount|div:page.portions|calculate_portions:request|floatformat:2 }}&nbsp;
                         </td>
                         <td>&nbsp;{{ ingredient.unit }}&nbsp;</td>
