@@ -6,10 +6,6 @@ body {
     display: inline-block;
 }
 
-.pure-menu-heading {
-    color: #308d46;
-}
-
 .pure-img-responsive {
     max-width: 100%;
     height: auto;

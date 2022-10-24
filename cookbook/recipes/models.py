@@ -93,7 +93,9 @@ class RecipePage(Page):
         FieldPanel('comments', ),
     ]
 
+
 RecipePage._meta.get_field("title").help_text = None
+
 
 class RecipeIndexPage(Page):
     intro = RichTextField(blank=True)
@@ -101,3 +103,9 @@ class RecipeIndexPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro')
     ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request)
+        context['children_sorted'] = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by(
+            'title')
+        return context
