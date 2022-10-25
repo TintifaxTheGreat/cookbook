@@ -1,5 +1,7 @@
 import csv
 import json
+import math
+import traceback
 from django.core.management.base import BaseCommand
 from wagtail.core.models import Page
 from recipes.models import RecipeIndexPage, RecipePage
@@ -13,10 +15,17 @@ class Command(BaseCommand):
 
         ingredients = []
         oldtitle = ""
+        recipe_page = RecipePage()
+
+        start = True
 
         reader = csv.DictReader(open("../data/gourmet_export.csv"), delimiter='|', quotechar='"')
         for row in reader:
-            if row["title"] == oldtitle:
+            if start or (row["title"] == oldtitle):
+                if start:
+                    oldtitle = row["title"]
+                    start = False
+
                 ingredients.append(
                     {
                         'name': row["item"],
@@ -25,28 +34,45 @@ class Command(BaseCommand):
                     }
                 )
 
-            else:
-                oldtitle = row["title"]
-
                 section1 = {
                     'heading': "",
                     'ingredients': ingredients,
-                    'instructions': "mytext",
+                    'instructions': row["instructions"],
                 }
 
                 recipe_page = RecipePage(
                     title=row["title"],
-                    portions=4,  # TODO change this
+                    portions=math.floor(float(row["yields"])),
                     sections=json.dumps([
                         {
                             'type': "sections",
                             'value': section1
                         },
                     ]),
-                    comments=row["modifications"]
+                    comments=row["modifications"],
+                    source=row["link"],
                 )
 
-                print(ingredients)
+            else:
+                oldtitle = row["title"]
 
-                #home.add_child(instance=recipe_page)
-                #recipe_page.save_revision().publish()
+                try:
+                    home.add_child(instance=recipe_page)
+                    recipe_page.save_revision().publish()
+                except:
+                    pass
+
+                amount = 0
+                try:
+                    amount = math.floor(float(row["amount"]))
+                except:
+                    pass
+
+
+                ingredients = [(
+                    {
+                        'name': row["item"],
+                        'amount': amount,
+                        'unit': row["unit"],
+                    }
+                )]

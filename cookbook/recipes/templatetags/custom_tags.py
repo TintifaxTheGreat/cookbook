@@ -1,3 +1,4 @@
+import math
 from django import template
 
 register = template.Library()
@@ -20,6 +21,11 @@ def calculate_portions(value, request):
 def divide_by(value, k):
     if not value:
         return None
+
+    if isinstance(value, str):
+        value = math.floor(float(value))
+    if isinstance(k, str):
+        value = math.floor(float(k))
 
     if k==0:
         return None
