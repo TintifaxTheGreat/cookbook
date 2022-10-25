@@ -17,6 +17,7 @@ choices = [
     ('l', 'l'),
     ('Stk', 'Stk'),
     ('Prise', 'Prise'),
+    ('Pkg', 'Pkg'),
     ('Spritzer', 'Spritzer'),
 ]
 
@@ -77,20 +78,29 @@ class RecipePage(Page):
     )
 
     comments = RichTextField(
+        null=True,
         blank=True,
         verbose_name="Kommentar",
+    )
+
+    source = RichTextField(
+        null=True,
+        blank=True,
+        verbose_name="Quelle",
     )
 
     search_fields = Page.search_fields + [
         index.SearchField('sections'),
         index.SearchField('comments'),
+        index.SearchField('source'),
     ]
 
     content_panels = [
         FieldPanel('title', heading='Rezeptname'),
         FieldPanel('portions'),
         FieldPanel('sections'),
-        FieldPanel('comments', ),
+        FieldPanel('comments'),
+        FieldPanel('source'),
     ]
 
 
