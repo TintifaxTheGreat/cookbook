@@ -133,3 +133,5 @@ dmypy.json
 
 # data
 db.sqlite3
+
+media

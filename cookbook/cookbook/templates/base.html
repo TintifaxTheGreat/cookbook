@@ -23,9 +23,7 @@
         {% endif %}
 
         {# Global stylesheets #}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.2.0/build/pure-min.css"
-              integrity="sha384-7UE2/aLxcikvluV1XGghN2k6i+LoAwMjrZb4oVT9gGPPcLd2sjqAtgIinHb11RJz"
-              crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/pico.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/cookbook.css' %}">
 
         {% block extra_css %}
@@ -36,19 +34,14 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
-    <div id="layout">
-        {% wagtailuserbar %}
+    {% wagtailuserbar %}
+    {% include "menu.html" %}
+    {% block content %}{% endblock %}
 
-        {% include "menu.html" %}
+    <script type="text/javascript" src="{% static 'js/cookbook.js' %}"></script>
 
-        {% block content %}{% endblock %}
-
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/cookbook.js' %}"></script>
-
-        {% block extra_js %}
-            {# Override this in templates to add extra javascript #}
-        {% endblock %}</div>
+    {% block extra_js %}
+    {% endblock %}
     </body>
 {% endspaceless %}
 </html>

@@ -6,60 +6,52 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
-
-    <div class="header">
+    <main class="container">
         <h1>{{ page.title }}</h1>
-    </div>
-    <div class="content">
-
-        <form action="{% url 'change-portions' %}" method="POST" class="pure-form">
-            <fieldset>
-                <label>Anzahl Portionen:</label>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" name="default" value="0" class="pure-button pure-button-primary"
-                       style="display: none;">
-                <input type="submit" name="btn_down" value="<" class="pure-button pure-button-primary">
-                <input type="submit" name="btn_up" value=">" class="pure-button pure-button-primary">
-            </fieldset>
+        <form action="{% url 'change-portions' %}" method="POST">
+            <div class="grid margins">
+                <label>Anzahl der Portionen:
+                    {% csrf_token %}
+                    {{ form }}
+                </label>
+            </div>
         </form>
-
         {% for section in page.sections %}
-            <h3>
-                {% if section.value.heading %}
-                    {{ section.value.heading }}
-                {% else %}
-                    Rezept
-                {% endif %}
-            </h3>
+            <article>
+                <h4>
+                    {% if section.value.heading %}
+                        {{ section.value.heading }}
+                    {% else %}
+                        Rezept
+                    {% endif %}
+                </h4>
 
-            <table class="pure-table">
-                <thead>
-                <tr>
-                    <th>Menge</th>
-                    <th>Einheit</th>
-                    <th>Zutat</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                {% for ingredient in section.value.ingredients %}
-
-                    <tr class="{% cycle 'pure-table-odd' '' %}">
-                        <td>
-                            &nbsp;{{ ingredient.amount|div:page.portions|calculate_portions:request|floatformat:2 }}&nbsp;
-                        </td>
-                        <td>&nbsp;{{ ingredient.unit }}&nbsp;</td>
-                        <td>&nbsp;{{ ingredient.name }}&nbsp;</td>
+                <h5>Zutaten</h5>
+                <table role="grid" class="margins">
+                    <thead>
+                    <tr>
+                        <th class="right">Menge</th>
+                        <th class="left">Einheit</th>
+                        <th class="left">Zutat</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            <p>&nbsp;</p>
-            {{ section.value.instructions }}
+                    </thead>
 
+                    <tbody>
+                    {% for ingredient in section.value.ingredients %}
+                        <tr>
+                            <td class="right">
+                                &nbsp;{{ ingredient.amount|div:page.portions|calculate_portions:request|floatformat:2 }}&nbsp;
+                            </td>
+                            <td class="left">&nbsp;{{ ingredient.unit }}&nbsp;</td>
+                            <td class="left">&nbsp;{{ ingredient.name }}&nbsp;</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <h5>Arbeitsschritte</h5>
+                {{ section.value.instructions }}
+            </article>
         {% endfor %}
-        <p>&nbsp;</p>
         {% if page.comments %}
             <h3>Kommentare</h3>
             {{ page.comments|richtext }}
@@ -68,6 +60,6 @@
             <h3>Quelle</h3>
             {{ page.source|richtext }}
         {% endif %}
-    </div>
 
+    </main>
 {% endblock %}

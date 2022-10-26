@@ -5,15 +5,13 @@
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
-    <div class="header">
+    <main class="container">
         <h1>{{ page.title }}</h1>
-    </div>
-    <div class="content">
-
-        <div class="intro">{{ page.intro|richtext }}</div>
-
-        {% for recipe in children_sorted %}
-            <h3><a href="{% pageurl recipe %}">{{ recipe.title }}</a></h3>
-        {% endfor %}
-    </div>
+        {{ page.intro|richtext }}
+        <article>
+            {% for recipe in children_sorted %}
+                <h4><a href="{% pageurl recipe %}">{{ recipe.title }}</a></h4>
+            {% endfor %}
+        </article>
+    </main>
 {% endblock %}

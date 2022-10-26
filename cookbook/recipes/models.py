@@ -19,6 +19,7 @@ choices = [
     ('Prise', 'Prise'),
     ('Pkg', 'Pkg'),
     ('Spritzer', 'Spritzer'),
+    ('Tropfen', 'Tropfen'),
 ]
 
 
