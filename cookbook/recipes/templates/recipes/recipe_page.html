@@ -25,51 +25,61 @@
                         Rezept
                     {% endif %}
                 </h4>
-
-                <h5>Zutaten</h5>
-                <table role="grid" class="margins">
-                    <thead>
-                    <tr>
-                        <th class="right">Menge</th>
-                        <th class="left">Einheit</th>
-                        <th class="left">Zutat</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    {% for ingredient in section.value.ingredients %}
+                <details open>
+                    <summary>Zutaten</summary>
+                    <table role="grid" class="margins">
+                        <thead>
                         <tr>
-                            <td class="right">
-                                &nbsp;{{ ingredient.amount|div:page.portions|calculate_portions:request|floatformat:2 }}&nbsp;
-                            </td>
-                            <td class="left">&nbsp;{{ ingredient.unit }}&nbsp;</td>
-                            <td class="left">&nbsp;{{ ingredient.name }}&nbsp;</td>
+                            <th class="right">Menge</th>
+                            <th class="left">Einheit</th>
+                            <th class="left">Zutat</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <h5>Arbeitsschritte</h5>
-                {{ section.value.instructions }}
+                        </thead>
+
+                        <tbody>
+                        {% for ingredient in section.value.ingredients %}
+                            <tr>
+                                <td class="right">
+                                    &nbsp;{{ ingredient.amount|div:page.portions|calculate_portions:request|floatformat:2 }}&nbsp;
+                                </td>
+                                <td class="left">&nbsp;{{ ingredient.unit }}&nbsp;</td>
+                                <td class="left">&nbsp;{{ ingredient.name }}&nbsp;</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </details>
+                <details open>
+                    <summary>Arbeitsschritte</summary>
+                    {{ section.value.instructions }}
+                </details>
             </article>
         {% endfor %}
         <article>
-            <header>
-                <div class="grid">
-                    {% for tag in page.tags.all %}
-                        <div><a href="/?tag={{ tag }}" role="button">{{ tag }}</a></div>
-                    {% endfor %}
-                </div>
-            </header>
-            {% if page.comments %}
-                <h3>Kommentare</h3>
-                {{ page.comments|richtext }}
+            {% if page.tags.all %}
+                <header>
+                    <div class="grid">
+                        {% for tag in page.tags.all %}
+                            <div><a href="/?tag={{ tag }}" role="button">{{ tag }}</a></div>
+                        {% endfor %}
+                    </div>
+                </header>
             {% endif %}
-            {% if page.source %}
-                <footer>
-                    <h3>Quelle</h3>
-                    {{ page.source|richtext }}
-                </footer>
-            {% endif %}
+            <div class="grid">
+                {% if page.comments %}
+                    <div>
+                        <h4>Kommentare</h4>
+                        {{ page.comments|richtext }}
+                        </details>
+                    </div>
+                {% endif %}
+                {% if page.source %}
+                    <div>
+                        <h4>Quelle</h4>
+                        {{ page.source|richtext }}
+                    </div>
+                {% endif %}
+            </div>
         </article>
     </main>
 {% endblock %}
