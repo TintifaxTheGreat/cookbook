@@ -5,15 +5,15 @@
                 REZEPTE
             </a>
         </li>
-        <li>
-            <a href="/" class="pure-menu-link">
-                Übersicht
-            </a>
-        </li>
         <li class="pure-menu-item">
             <a href="/admin/" class="pure-menu-link">
                 Bearbeiten
             </a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <form action="{% url 'search' %}" method="get"><input type="search" id="search" name="search" placeholder="Suche"></form>
         </li>
     </ul>
 </nav>
