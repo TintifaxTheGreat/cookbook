@@ -52,14 +52,24 @@
                 {{ section.value.instructions }}
             </article>
         {% endfor %}
-        {% if page.comments %}
-            <h3>Kommentare</h3>
-            {{ page.comments|richtext }}
-        {% endif %}
-        {% if page.source %}
-            <h3>Quelle</h3>
-            {{ page.source|richtext }}
-        {% endif %}
-
+        <article>
+            <header>
+                <div class="grid">
+                    {% for tag in page.tags.all %}
+                        <div><a href="/?tag={{ tag }}" role="button">{{ tag }}</a></div>
+                    {% endfor %}
+                </div>
+            </header>
+            {% if page.comments %}
+                <h3>Kommentare</h3>
+                {{ page.comments|richtext }}
+            {% endif %}
+            {% if page.source %}
+                <footer>
+                    <h3>Quelle</h3>
+                    {{ page.source|richtext }}
+                </footer>
+            {% endif %}
+        </article>
     </main>
 {% endblock %}

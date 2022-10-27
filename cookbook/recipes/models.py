@@ -1,4 +1,8 @@
-from django.db.models import PositiveSmallIntegerField
+from modelcluster.fields import ParentalKey
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from taggit.models import TaggedItemBase
+
+from django.db.models import PositiveSmallIntegerField, CASCADE
 
 from wagtail.core import blocks
 from wagtail.models import Page
@@ -64,6 +68,10 @@ class SectionBlock(blocks.StructBlock):
         label = "Rezeptabschnitt"
 
 
+class RecipePageTag(TaggedItemBase):
+    content_object = ParentalKey('RecipePage', on_delete=CASCADE, related_name='tagged_items')
+
+
 class RecipePage(Page):
     portions = PositiveSmallIntegerField(
         blank=False,
@@ -90,6 +98,8 @@ class RecipePage(Page):
         verbose_name="Quelle",
     )
 
+    tags = ClusterTaggableManager(through=RecipePageTag, blank=True)
+
     search_fields = Page.search_fields + [
         index.SearchField('title'),
         index.SearchField('sections'),
@@ -101,6 +111,7 @@ class RecipePage(Page):
         FieldPanel('title', heading='Rezeptname'),
         FieldPanel('portions'),
         FieldPanel('sections'),
+        FieldPanel('tags'),
         FieldPanel('comments'),
         FieldPanel('source'),
     ]
@@ -118,6 +129,12 @@ class RecipeIndexPage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
-        context['children_sorted'] = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by(
+        children_sorted = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by(
             'title')
+
+        tag = request.GET.get('tag')
+        if tag:
+            children_sorted = children_sorted.filter(tags__name=tag)
+
+        context['children_sorted'] = children_sorted
         return context
