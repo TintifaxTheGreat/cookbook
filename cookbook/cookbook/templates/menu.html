@@ -1,9 +1,8 @@
-<div class="pure-menu pure-menu-horizontal">
-    <ul class="pure-menu-list">
-        <li class="pure-menu-heading">REZEPTE</li>
-        <li class="pure-menu-item">
+<nav class="container">
+    <ul>
+        <li>
             <a href="/" class="pure-menu-link">
-                Übersicht
+                REZEPTE
             </a>
         </li>
         <li class="pure-menu-item">
@@ -12,4 +11,9 @@
             </a>
         </li>
     </ul>
-</div>
+    <ul>
+        <li>
+            <form action="{% url 'search' %}" method="get"><input type="search" id="search" name="search" placeholder="Suche"></form>
+        </li>
+    </ul>
+</nav>
