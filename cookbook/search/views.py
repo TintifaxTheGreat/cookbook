@@ -10,8 +10,6 @@ def search(request):
         search_results = RecipePage.objects.live().search(search_query)
         print(search_results)
         query = Query.get(search_query)
-
-        # Record hit
         query.add_hit()
     else:
         search_results = RecipePage.objects.none()
