@@ -1,19 +1,37 @@
+{% load custom_tags %}
+
 <nav class="container">
     <ul>
         <li>
-            <a href="/" class="pure-menu-link">
-                REZEPTE
-            </a>
+            <details role="list">
+                <summary aria-haspopup="listbox" role="link" class="contrast">Rezepte</summary>
+                <ul role="listbox">
+                    <li>
+                        <a href="/">
+                            Alle Rezepte
+                        </a>
+                    </li>
+                    {% taglist %}
+
+                    <li role="separator"></li>
+                    <li>
+                        <a href="/admin/">
+                            Bearbeiten
+                        </a>
+                    </li>
+                </ul>
+            </details>
         </li>
-        <li class="pure-menu-item">
-            <a href="/admin/" class="pure-menu-link">
-                Bearbeiten
+        <li>
+            <a href="/">
+                Liste
             </a>
         </li>
     </ul>
     <ul>
         <li>
-            <form action="{% url 'search' %}" method="get"><input type="search" id="search" name="search" placeholder="Suche"></form>
+            <form action="{% url 'search' %}" method="get"><input type="search" id="search" name="search"
+                                                                  placeholder="Suche"></form>
         </li>
     </ul>
 </nav>

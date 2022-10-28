@@ -1,7 +1,17 @@
 import math
 from django import template
 
+from recipes.models import RecipePage
+
 register = template.Library()
+
+
+@register.inclusion_tag('recipes/taglist.html', takes_context=True)
+def taglist(context):
+    return {
+        'tags': RecipePage.get_all_tags(),
+        'request': context['request'],
+    }
 
 
 @register.filter(name='calculate_portions')
@@ -27,8 +37,7 @@ def divide_by(value, k):
     if isinstance(k, str):
         value = math.floor(float(k))
 
-    if k==0:
+    if k == 0:
         return None
 
     return value / k
-
