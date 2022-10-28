@@ -1,10 +1,9 @@
 import csv
 import json
 import math
-import traceback
 from django.core.management.base import BaseCommand
 from wagtail.core.models import Page
-from recipes.models import RecipeIndexPage, RecipePage
+from recipes.models import RecipePage
 
 
 class Command(BaseCommand):

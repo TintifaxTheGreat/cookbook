@@ -1,16 +1,11 @@
+from decouple import config
+
 from .base import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-8%qq8s-8_8+!i!*!tm44d%+sogny5n8qax+*!)bkvnz)z+@gqn"
-
-# SECURITY WARNING: define the correct hosts in production!
+SECRET_KEY = config("SECRET_KEY")
 ALLOWED_HOSTS = ["*"]
-
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 
 try:
     from .local import *

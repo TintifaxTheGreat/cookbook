@@ -1,9 +1,9 @@
-from .base import *
+from decouple import config
 
 DEBUG = False
 WAGTAIL_PAGES_IS_CREATABLE = False
 
-SECRET_KEY = 'afs872134hjf$_asdf872134jasfsd3v$najsdf§?__234kjafdnnvhasdf asdf'
+SECRET_KEY = config("SECRET_KEY")
 
 SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
@@ -14,7 +14,7 @@ CSRF_COOKIE_SECURE = True
 
 SECURE_HSTS_PRELOAD = True
 
-ALLOWED_HOSTS = ['localhost','cookbook.lindy.net']
+ALLOWED_HOSTS = ['localhost', 'cookbook.lindy.net']
 
 LOGGING = {
     'version': 1,
