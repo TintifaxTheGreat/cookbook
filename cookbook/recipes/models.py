@@ -1,16 +1,14 @@
-from modelcluster.fields import ParentalKey
-from modelcluster.contrib.taggit import ClusterTaggableManager
-from taggit.models import TaggedItemBase
-
 from django.db.models import PositiveSmallIntegerField, CASCADE
-
-from wagtail.core import blocks
-from wagtail.models import Page
-from wagtail.fields import RichTextField
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
+from taggit.models import TaggedItemBase
 from wagtail.admin.panels import FieldPanel
-from wagtail.search import index
-from wagtail.core.fields import StreamField
+from wagtail.core import blocks
 from wagtail.core.blocks import ListBlock, RichTextBlock
+from wagtail.core.fields import StreamField
+from wagtail.fields import RichTextField
+from wagtail.models import Page
+from wagtail.search import index
 
 choices = [
     ('EL', 'EL'),
@@ -115,6 +113,11 @@ class RecipePage(Page):
         FieldPanel('comments'),
         FieldPanel('source'),
     ]
+
+    @staticmethod
+    def get_all_tags():
+        tags = RecipePage.tags.most_common()
+        return tags
 
 
 RecipePage._meta.get_field("title").help_text = None
