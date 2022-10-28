@@ -1,5 +1,7 @@
 from decouple import config
 
+from .base import *
+
 DEBUG = False
 WAGTAIL_PAGES_IS_CREATABLE = False
 
