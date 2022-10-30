@@ -20,6 +20,7 @@ choices = [
     ('Stk', 'Stk'),
     ('Prise', 'Prise'),
     ('Pkg', 'Pkg'),
+    ('Bund', 'Bund'),
     ('Spritzer', 'Spritzer'),
     ('Tropfen', 'Tropfen'),
 ]
