@@ -135,5 +135,6 @@ dmypy.json
 db.sqlite3
 
 media
+bak
 
 .env
