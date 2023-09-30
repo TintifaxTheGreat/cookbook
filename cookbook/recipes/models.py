@@ -3,9 +3,9 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from wagtail.admin.panels import FieldPanel
-from wagtail.core import blocks
-from wagtail.core.blocks import ListBlock, RichTextBlock
-from wagtail.core.fields import StreamField
+#from wagtail.core import blocks
+from wagtail.blocks import ListBlock, RichTextBlock, StructBlock, CharBlock, FloatBlock, ChoiceBlock
+from wagtail.fields import StreamField
 from wagtail.fields import RichTextField
 from wagtail.models import Page
 from wagtail.search import index
@@ -26,16 +26,16 @@ choices = [
 ]
 
 
-class IngredientBlock(blocks.StructBlock):
-    name = blocks.CharBlock()
-    amount = blocks.FloatBlock(
+class IngredientBlock(StructBlock):
+    name = CharBlock()
+    amount = FloatBlock(
         label="Menge",
         help_text="Menge",
         required=False,
         min_value=0.0,
         max_value=999999.0,
     )
-    unit = blocks.ChoiceBlock(
+    unit = ChoiceBlock(
         label="Einheit",
         required=False,
         choices=choices,
@@ -46,8 +46,8 @@ class IngredientBlock(blocks.StructBlock):
         label = "Zutaten"
 
 
-class SectionBlock(blocks.StructBlock):
-    heading = blocks.CharBlock(
+class SectionBlock(StructBlock):
+    heading = CharBlock(
         label="Überschrift",
         required=False,
     )
@@ -80,7 +80,7 @@ class RecipePage(Page):
     sections = StreamField([
         ('sections', SectionBlock()),
     ],
-        use_json_field=False,
+        use_json_field=True,
         blank=False,
         verbose_name="Rezeptabschnitte",
     )
