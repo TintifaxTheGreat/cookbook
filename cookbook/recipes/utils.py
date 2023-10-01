@@ -1,5 +1,6 @@
 from .forms import PortionsForm
 
+
 def inject_form(request):
     if 'portions' not in request.session:
         portions = 4

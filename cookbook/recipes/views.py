@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 
 from .forms import PortionsForm
 
+
 def change_portions(request):
     if request.method == 'POST':
         form = PortionsForm(request.POST, default_portions='')
@@ -12,10 +13,6 @@ def change_portions(request):
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    else:
-        form = PortionsForm()
+    form = PortionsForm()
 
-    context = {
-        'form': form
-    }
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

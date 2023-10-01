@@ -3,7 +3,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 from wagtail.admin.panels import FieldPanel
-#from wagtail.core import blocks
+# from wagtail.core import blocks
 from wagtail.blocks import ListBlock, RichTextBlock, StructBlock, CharBlock, FloatBlock, ChoiceBlock
 from wagtail.fields import StreamField
 from wagtail.fields import RichTextField
@@ -68,7 +68,8 @@ class SectionBlock(StructBlock):
 
 
 class RecipePageTag(TaggedItemBase):
-    content_object = ParentalKey('RecipePage', on_delete=CASCADE, related_name='tagged_items')
+    content_object = ParentalKey(
+        'RecipePage', on_delete=CASCADE, related_name='tagged_items')
 
 
 class RecipePage(Page):
@@ -132,6 +133,9 @@ class RecipeIndexPage(Page):
     ]
 
     def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request)
+        children_sorted = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by(
+            'title')
         context = super().get_context(request)
         children_sorted = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by(
             'title')
