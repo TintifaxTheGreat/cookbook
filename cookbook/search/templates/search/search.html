@@ -6,7 +6,7 @@
 
 {% block content %}
     <main class="container">
-        <h1>Suchergebnisse</h1>
+        <h1>Suchergebnisse ({{ search_results|length }})</h1>
         <article>
             {% for recipe in search_results %}
                 <h4><a href="{% pageurl recipe %}">{{ recipe.title }}</a></h4>

@@ -2,7 +2,7 @@ from django.db.models import PositiveSmallIntegerField, CASCADE
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, TitleFieldPanel
 # from wagtail.core import blocks
 from wagtail.blocks import ListBlock, RichTextBlock, StructBlock, CharBlock, FloatBlock, ChoiceBlock
 from wagtail.fields import StreamField
@@ -108,7 +108,7 @@ class RecipePage(Page):
     ]
 
     content_panels = [
-        FieldPanel('title', heading='Rezeptname'),
+        TitleFieldPanel('title', placeholder="Rezeptname", heading='Rezeptname'),
         FieldPanel('portions'),
         FieldPanel('sections'),
         FieldPanel('tags'),
