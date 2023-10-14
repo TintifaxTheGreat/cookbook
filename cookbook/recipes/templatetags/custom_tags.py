@@ -1,6 +1,5 @@
 import math
 from django import template
-
 from recipes.models import RecipePage
 
 register = template.Library()

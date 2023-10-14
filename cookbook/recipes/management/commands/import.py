@@ -2,7 +2,7 @@ import csv
 import json
 import math
 from django.core.management.base import BaseCommand
-from wagtail.core.models import Page
+from wagtail.models import Page
 from recipes.models import RecipePage
 
 
@@ -18,7 +18,8 @@ class Command(BaseCommand):
 
         start = True
 
-        reader = csv.DictReader(open("../data/gourmet_export.csv"), delimiter='|', quotechar='"')
+        reader = csv.DictReader(
+            open("../data/gourmet_export.csv"), delimiter='|', quotechar='"')
         for row in reader:
             if start or (row["title"] == oldtitle):
                 if start:
@@ -66,7 +67,6 @@ class Command(BaseCommand):
                     amount = math.floor(float(row["amount"]))
                 except:
                     pass
-
 
                 ingredients = [(
                     {

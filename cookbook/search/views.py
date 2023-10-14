@@ -1,6 +1,6 @@
 from django.template.response import TemplateResponse
-from recipes.models import RecipePage
 from wagtail.search.models import Query
+from recipes.models import RecipePage
 
 
 def search(request):

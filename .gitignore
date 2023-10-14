@@ -138,3 +138,6 @@ media
 bak
 
 .env
+
+# VSCode
+settings.json

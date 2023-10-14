@@ -18,13 +18,13 @@
         </form>
         {% for section in page.sections %}
             <article>
-                <h4>
+                <h2>
                     {% if section.value.heading %}
                         {{ section.value.heading }}
                     {% else %}
                         Rezept
                     {% endif %}
-                </h4>
+                </h2>
                 <details open>
                     <summary>Zutaten</summary>
                     <table role="grid" class="margins">

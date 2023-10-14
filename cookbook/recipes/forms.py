@@ -6,7 +6,7 @@ class PortionsForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.portions = kwargs.pop('default_portions')
-        super(PortionsForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.fields['your_portions'].initial = self.portions
 
     def process(self, request):
