@@ -23,3 +23,7 @@
 .right {
     text-align:right;
 }
+.smallh2 {
+    --font-size: 1.25rem;
+    --typography-spacing-vertical: 1.6rem;
+}

@@ -9,7 +9,7 @@
         <h1>{{ page.title }} ({{ children_sorted|length }})</h1>
         <article>
             {% for recipe in children_sorted %}
-                <h4><a href="{% pageurl recipe %}">{{ recipe.title }}</a></h4>
+                <h2 class="smallh2"><a href="{% pageurl recipe %}">{{ recipe.title }}</a></h2>
             {% endfor %}
         </article>
     </main>
