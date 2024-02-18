@@ -1,3 +1,4 @@
 Django>=4.2,<5.1
 wagtail>=5.1,<6.1
+wagtail_modeladmin
 python-decouple>=3.8

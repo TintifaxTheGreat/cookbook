@@ -1,9 +1,10 @@
 from taggit.models import Tag
 
-from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
 from wagtail.admin.panels import FieldPanel
 from wagtail import hooks
 from wagtail.admin.menu import MenuItem
+
+from wagtail_modeladmin.options import ModelAdmin, modeladmin_register
 
 
 @hooks.register("register_admin_menu_item")

@@ -1,5 +1,5 @@
 from django.template.response import TemplateResponse
-from wagtail.search.models import Query
+from wagtail.contrib.search_promotions.models import Query
 from recipes.models import RecipePage
 
 
