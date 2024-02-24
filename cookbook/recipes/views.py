@@ -22,7 +22,13 @@ def change_portions(request):
 
 def recipe_index_paginated(request):
     page = request.GET.get('page')
+    next_page = int(page) + 1
     children_sorted = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by('title')
+
+    tag = request.GET.get('tag')
+    if tag:
+        children_sorted = children_sorted.filter(tags__name=tag)
+
     if page:
         paginator = Paginator(children_sorted, 10)
         try:
@@ -30,10 +36,13 @@ def recipe_index_paginated(request):
         except PageNotAnInteger:
             children_sorted = paginator.page(1)
         except EmptyPage:
-            children_sorted = paginator.page(paginator.num_pages)
+            # children_sorted = paginator.page(paginator.num_pages)
+            children_sorted = None
+            next_page = None
 
     return TemplateResponse(request, 'recipes/recipe_index_paginated.html', {
         'children_sorted': children_sorted,
-        'page_next': int(page) + 1 if page else 2,
+        'page_next': next_page,
+        'tag_name': tag,
     })
 

@@ -1,9 +1,9 @@
 {% load wagtailcore_tags %}
 
 {% for recipe in children_sorted %}
-    {% if forloop.last %}
+    {% if forloop.last and page_next %}
         <h2 
-            hx-get="recipe-index-paginated/?page={{page_next}}" 
+            hx-get="recipe-index-paginated/?page={{page_next}}&tag={{tag_name}}" 
             hx-trigger="revealed" 
             hx-swap="afterend"
             hx-disinherit="true" 

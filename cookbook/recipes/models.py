@@ -140,6 +140,7 @@ class RecipeIndexPage(Page):
         tag = request.GET.get('tag')
         if tag:
             children_sorted = children_sorted.filter(tags__name=tag)
+            context['tag_name'] = tag
 
         context['children_sorted_count'] = children_sorted.count()
         paginator = Paginator(children_sorted, 10)
