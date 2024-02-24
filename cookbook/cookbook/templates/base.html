@@ -38,7 +38,8 @@
     {% include "menu.html" %}
     {% block content %}{% endblock %}
 
-    <script type="text/javascript" src="{% static 'js/cookbook.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/cookbook.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/htmx.min.js' %}"></script>
 
     {% block extra_js %}
     {% endblock %}

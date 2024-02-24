@@ -1,4 +1,5 @@
 from django.db.models import PositiveSmallIntegerField, CASCADE
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
@@ -135,13 +136,15 @@ class RecipeIndexPage(Page):
         context = super().get_context(request)
         children_sorted = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by(
             'title')
-        context = super().get_context(request)
-        children_sorted = RecipePage.objects.child_of(RecipeIndexPage.objects.first()).live().order_by(
-            'title')
 
         tag = request.GET.get('tag')
         if tag:
             children_sorted = children_sorted.filter(tags__name=tag)
+            context['tag_name'] = tag
 
+        context['children_sorted_count'] = children_sorted.count()
+        paginator = Paginator(children_sorted, 10)
+        children_sorted = paginator.page(1)
         context['children_sorted'] = children_sorted
+        context['page_next'] = 2
         return context

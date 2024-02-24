@@ -6,11 +6,9 @@
 
 {% block content %}
     <main class="container">
-        <h1>{{ page.title }} ({{ children_sorted|length }})</h1>
+        <h1>{{ page.title }} ({{ children_sorted_count }})</h1>
         <article>
-            {% for recipe in children_sorted %}
-                <h2 class="smallh2"><a href="{% pageurl recipe %}">{{ recipe.title }}</a></h2>
-            {% endfor %}
+            {% include "recipes/recipe_index_paginated.html" %}
         </article>
     </main>
 {% endblock %}
