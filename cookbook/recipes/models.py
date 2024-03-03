@@ -27,7 +27,14 @@ choices = [
 
 
 class IngredientBlock(StructBlock):
-    name = CharBlock()
+    name = CharBlock(
+        label="Zutat",
+        required=True,
+    )
+    note = CharBlock(
+        label="Anmerkung",
+        required=False,
+    )
     amount = FloatBlock(
         label="Menge",
         help_text="Menge",
