@@ -42,8 +42,15 @@
                                 <td class="right">
                                     &nbsp;{{ ingredient.amount|div:page.portions|calculate_portions:request|floatformat:2 }}&nbsp;
                                 </td>
-                                <td class="left">&nbsp;{{ ingredient.unit }}&nbsp;</td>
-                                <td class="left">&nbsp;{{ ingredient.name }}&nbsp;</td>
+                                <td class="left">
+                                    &nbsp;{{ ingredient.unit }}&nbsp;
+                                </td>
+                                <td class="left">
+                                    &nbsp;{{ ingredient.name }}&nbsp;
+                                    {% if ingredient.note %}
+                                    ({{ ingredient.note }})&nbsp;
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
