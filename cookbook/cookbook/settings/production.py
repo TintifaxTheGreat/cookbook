@@ -16,23 +16,23 @@ CSRF_COOKIE_SECURE = True
 
 SECURE_HSTS_PRELOAD = True
 
-ALLOWED_HOSTS = ['localhost', 'cookbook.lindy.net']
+ALLOWED_HOSTS = ["localhost", "cookbook.lindy.net"]
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.FileHandler',
-            'filename': 'error.log',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": "error.log",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': True,
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": True,
         },
     },
 }
