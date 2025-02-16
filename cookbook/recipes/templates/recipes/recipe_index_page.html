@@ -6,7 +6,7 @@
 
 {% block content %}
     <main class="container">
-        <h1>{{ page.title }} ({{ children_sorted_count }})</h1>
+        <h1>{{ page.title }}{% if tag_name %}: {{tag_name}}{% endif %} ({{ children_sorted_count }})</h1>
         <article>
             {% include "recipes/recipe_index_paginated.html" %}
         </article>

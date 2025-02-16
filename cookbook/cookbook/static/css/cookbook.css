@@ -27,12 +27,6 @@
     --font-size: 1.25rem;
     --typography-spacing-vertical: 1.6rem;
 }
-.acs{
-    display: flex !important;
-    justify-content: flex-end!important;
-}
-#autocomplete-results {
-    list-style-type: none!important;
-    padding: 0;
-    margin: 0;
+.azur {
+    background-color: #D1E5FB;
 }

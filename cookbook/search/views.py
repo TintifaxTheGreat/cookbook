@@ -37,7 +37,7 @@ def search_autocomplete(request):
         )
         results = [
             {"title": search_result.title, "url": search_result.url}
-            for search_result in search_results[:5]
+            for search_result in search_results[:3]
         ]
     else:
         results = []
