@@ -121,6 +121,9 @@ class RecipePage(Page):
         index.SearchField("sections"),
         index.SearchField("comments"),
         index.SearchField("source"),
+        index.SearchField("tags"),
+        index.AutocompleteField("title"),
+        index.AutocompleteField("tags"),
     ]
 
     content_panels = [

@@ -30,8 +30,11 @@
     </ul>
     <ul>
         <li>
-            <form action="{% url 'search' %}" method="get"><input type="search" id="search" name="search"
-                                                                  placeholder="Suche"></form>
+            <form action="{% url 'search' %}" method="get">
+                <input type="search" id="search" name="search" autocomplete="off" placeholder="Suche">
+            </form>                                                     
         </li>
     </ul>
 </nav>
+<main class="container"><div class="acs"><ul id="autocomplete-results"></ul></div></main>
+

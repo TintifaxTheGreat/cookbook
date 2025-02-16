@@ -1,20 +1,20 @@
 from django.conf import settings
 from django.urls import include, path
 from django.contrib import admin
-
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
-
 from recipes.views import change_portions, recipe_index_paginated
-from search import views as search_views
+from search.views import search
+from search.views import search_autocomplete
 
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
-    path("search/", search_views.search, name="search"),
+    path("search/", search, name="search"),
+    path("acs/", search_autocomplete, name="search_autocomplete"),
     path("change-portions/", change_portions, name="change-portions"),
     path(
         "recipe-index-paginated/", recipe_index_paginated, name="recipe-index-paginated"
