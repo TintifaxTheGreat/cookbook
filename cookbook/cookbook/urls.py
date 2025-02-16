@@ -15,8 +15,10 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-    path('change-portions/', change_portions, name='change-portions'),
-    path('recipe-index-paginated/', recipe_index_paginated, name='recipe-index-paginated'),
+    path("change-portions/", change_portions, name="change-portions"),
+    path(
+        "recipe-index-paginated/", recipe_index_paginated, name="recipe-index-paginated"
+    ),
 ]
 
 
