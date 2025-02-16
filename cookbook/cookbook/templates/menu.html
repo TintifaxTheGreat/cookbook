@@ -1,10 +1,18 @@
 {% load custom_tags %}
 
-<nav class="container">
+<nav class="container-fluid azur">
+    <ul>&nbsp;</ul>
+    <ul
+        <li>
+            <a href="/">
+                Alle Rezepte
+            </a>
+        </li>
+    </ul>
     <ul>
         <li>
             <details role="list">
-                <summary aria-haspopup="listbox" role="link" class="contrast">Rezepte</summary>
+                <summary aria-haspopup="listbox" role="link" class="contrast">Tags</summary>
                 <ul role="listbox">
                     <li>
                         <a href="/">
@@ -14,24 +22,30 @@
                     {% taglist %}
 
                     <li role="separator"></li>
-                    <li>
-                        <a href="/admin/">
-                            Bearbeiten
-                        </a>
-                    </li>
+
                 </ul>
             </details>
-        </li>
-        <li>
-            <a href="/">
-                Liste
-            </a>
         </li>
     </ul>
     <ul>
         <li>
-            <form action="{% url 'search' %}" method="get"><input type="search" id="search" name="search"
-                                                                  placeholder="Suche"></form>
+            <a href="/admin/">
+                Bearbeiten
+            </a>
         </li>
     </ul>
+    <ul>&nbsp;</ul>
 </nav>
+<nav class="container">
+    <ul>
+        <li>
+            <form action="{% url 'search' %}" method="get">
+                <input type="search" id="search" name="search" autocomplete="off" placeholder="Suche">
+            </form>                                        
+        </li>
+    </ul>
+    <ul id="autocomplete-results"></ul>
+</nav>
+
+
+

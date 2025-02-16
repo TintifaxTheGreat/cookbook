@@ -9,6 +9,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from dotenv import load_dotenv
+
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
+
+# Load environment variables from .env file
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -153,9 +160,12 @@ WAGTAIL_SITE_NAME = "cookbook"
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html
 WAGTAILSEARCH_BACKENDS = {
-    "default": {
-        "BACKEND": "wagtail.search.backends.database",
-    }
+    'default': {
+        'BACKEND': 'wagtail_meilisearch.backend',
+        'HOST': os.environ.get('MEILISEARCH_HOST', 'http://127.0.0.1'),
+        'PORT': os.environ.get('MEILISEARCH_PORT', '7700'),
+        'MASTER_KEY': os.environ.get('MEILI_MASTER_KEY', '')
+    },
 }
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
