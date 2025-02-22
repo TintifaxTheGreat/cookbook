@@ -36,8 +36,6 @@ Create an admin account
 python manage.py createsuperuser
 ```
 
-* * *
-
 Collect static files
 
 ```bash

@@ -30,3 +30,11 @@
 .azur {
     background-color: #D1E5FB;
 }
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+.scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-left: 20px;
+}
