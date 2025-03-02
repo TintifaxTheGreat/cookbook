@@ -37,4 +37,6 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
     padding-left: 20px;
+    white-space: nowrap;
 }
+
