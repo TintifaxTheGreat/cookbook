@@ -1,5 +1,5 @@
 Django>=4.2,<5.2
-wagtail>=6.1.2,<6.5
+wagtail>=6.1.2,<7.2
 wagtail_modeladmin
 wagtail-meilisearch>=0.17
 python-decouple>=3.8
